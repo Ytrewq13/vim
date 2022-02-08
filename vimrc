@@ -230,7 +230,7 @@ autocmd FileType rmd nnoremap <buffer> <F2> :call RMakeRmd("default")<CR>
 autocmd FileType rmd inoremap <buffer> <F2> <Esc><F2>
 
 let g:tex_flavor = "latex"
-let g:vimtex_fold_enabled = 1
+"let g:vimtex_fold_enabled = 1
 
 " Compile latex documents asynchronously with Vimtex
 autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompile<CR>
