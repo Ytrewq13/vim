@@ -22,7 +22,7 @@ set rtp+=$HOME/.config/vim/dein/repos/github.com/Shougo/dein.vim
 
 " Dein, the next generation of vim plugin manager
 " FIXME: switch plugins to being managed by Dein.
-call dein#begin('~/.config/vim/dein')
+call dein#begin(expand('~/.config/vim/dein'))
 
 " Let dein manage dein, required
 call dein#add('Shougo/dein.vim')
