@@ -1,6 +1,5 @@
 .netrwhist
-dein/.cache
 !dein/repos/github.com/Shougo/dein.vim
-dein/repos
+dein/*
 !bundle/Vundle.vim
 bundle/*
