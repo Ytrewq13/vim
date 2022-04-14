@@ -357,3 +357,8 @@ autocmd BufEnter * silent! lcd %:p:h
 ab hte the
 ab teh the
 ab Teh The
+ab wiht with
+ab funciton function
+ab funcitons functions
+ab Funciton Function
+ab Funcitons Functions
