@@ -56,7 +56,7 @@ Plugin 'tpope/vim-dispatch'
 
 Plugin 'wesQ3/vim-windowswap'  " <leader>ww to mark/swap windows
 Plugin 'StanAngeloff/php.vim'
-Plugin 'csexton/trailertrash.vim'  " TODO: set a keybind for :TrailerTrim
+Plugin 'csexton/trailertrash.vim'
 
 Plugin 'ARM9/arm-syntax-vim'
 
@@ -88,19 +88,23 @@ nnoremap <C-_> :BLines<CR>
 
 
 " SnipMate configuration
-let g:snipMate = { 'snippet_version' : 1 }
-imap <C-S> <Plug>snipMateNextOrTrigger
-smap <C-S> <Plug>snipMateNextOrTrigger
-imap <F5> <Plug>snipMateShow
+"let g:snipMate = { 'snippet_version' : 1 }
+"imap <C-S> <Plug>snipMateNextOrTrigger
+"smap <C-S> <Plug>snipMateNextOrTrigger
+"imap <F5> <Plug>snipMateShow
+" coc-snippets configuration
+vmap <C-S> <Plug>(coc-snippets-select)
 "
-"let g:snips_author="Sam Whitehead"
-"let g:snips_email="sam.everythingcomputers@gmail.com"
-"let g:snips_github="https://github.com/Ytrewq13"
+let g:snips_author="Sam Whitehead"
+let g:snips_email="sam.everythingcomputers@gmail.com"
+let g:snips_github="https://github.com/Ytrewq13"
 
 
 let g:rooter_silent_chdir = 1
 let g:rooter_patterns = ['.git', 'src/', 'build/']
 
+" <F5> to trim trailing spaces from a file
+nmap <F5> :TrailerTrim<CR>
 
 filetype plugin indent on
 syntax on
