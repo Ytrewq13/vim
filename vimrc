@@ -54,14 +54,9 @@ Plugin 'tpope/vim-repeat'
 " TODO: use this more - set makeprg for filetypes without plugins
 Plugin 'tpope/vim-dispatch'
 
-"Plugin 'dense-analysis/ale'  " TODO: switch to CoC?
 Plugin 'wesQ3/vim-windowswap'  " <leader>ww to mark/swap windows
 Plugin 'StanAngeloff/php.vim'
 Plugin 'csexton/trailertrash.vim'  " TODO: set a keybind for :TrailerTrim
-
-" Autocompletion / linting
-"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-" FIXME: CoC.nvim doesn't work (some issue with prereqs?)
 
 Plugin 'ARM9/arm-syntax-vim'
 
@@ -75,7 +70,7 @@ Plugin 'airblade/vim-helptab'
 Plugin 'lervag/vimtex'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-"Plugin 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plugin 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plugin 'chrisbra/NrrwRgn'
 
 " SnipMate - used to implement snippets
@@ -228,6 +223,7 @@ autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 " Using Nvim-R for compiling rmarkdown documents
 autocmd FileType rmd nnoremap <buffer> <F2> :call RMakeRmd("default")<CR>
 autocmd FileType rmd inoremap <buffer> <F2> <Esc><F2>
+set nofoldenable
 
 let g:tex_flavor = "latex"
 "let g:vimtex_fold_enabled = 1
