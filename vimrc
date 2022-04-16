@@ -17,13 +17,12 @@ augroup END
 " TODO: make sure everything still works since changing from $HOME to
 " $XDG_CONFIG_HOME
 set rtp+=$XDG_CONFIG_HOME/vim
-set rtp+=$XDG_CONFIG_HOME/vim/bundle/Vundle.vim
+" TODO: move dein plugins into bundle/ now that Vundle is gone
 set rtp+=$XDG_CONFIG_HOME/vim/dein/repos/github.com/Shougo/dein.vim
 
 
 
 " Dein, the next generation of vim plugin manager
-" FIXME: switch plugins to being managed by Dein.
 " TODO: change the expansion here to use $XDG_CONFIG_HOME
 call dein#begin(expand('~/.config/vim/dein'))
 
@@ -249,7 +248,7 @@ autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 " Using Nvim-R for compiling rmarkdown documents
 autocmd FileType rmd nnoremap <buffer> <F2> :call RMakeRmd("default")<CR>
 autocmd FileType rmd inoremap <buffer> <F2> <Esc><F2>
-set nofoldenable
+"set nofoldenable
 
 let g:tex_flavor = "latex"
 let g:vimtex_fold_enabled = 1
@@ -291,7 +290,13 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " CoC extensions
-let g:coc_global_extensions = ['coc-vimlsp', 'coc-snippets', 'coc-vimtex', 'coc-json', 'coc-clangd']
+let g:coc_global_extensions = [
+            \ 'coc-vimlsp',
+            \ 'coc-snippets',
+            \ 'coc-vimtex',
+            \ 'coc-json',
+            \ 'coc-clangd'
+\]
 
 " TODO: setup more CoC details/settings
 
