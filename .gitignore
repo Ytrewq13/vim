@@ -1,5 +1,3 @@
 .netrwhist
-!dein/repos/github.com/Shougo/dein.vim
 dein/*
-!bundle/Vundle.vim
 bundle/*
