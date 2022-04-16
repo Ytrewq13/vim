@@ -14,14 +14,17 @@ augroup VimReload
 augroup END
 
 
-" FIXME: move vim rtp to $XDG_CONFIG_HOME (and get everything working
-" correctly)
+" TODO: make sure everything still works since changing from $HOME to
+" $XDG_CONFIG_HOME
 set rtp+=$XDG_CONFIG_HOME/vim
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-set rtp+=$HOME/.config/vim/dein/repos/github.com/Shougo/dein.vim
+set rtp+=$XDG_CONFIG_HOME/vim/bundle/Vundle.vim
+set rtp+=$XDG_CONFIG_HOME/vim/dein/repos/github.com/Shougo/dein.vim
+
+
 
 " Dein, the next generation of vim plugin manager
 " FIXME: switch plugins to being managed by Dein.
+" TODO: change the expansion here to use $XDG_CONFIG_HOME
 call dein#begin(expand('~/.config/vim/dein'))
 
 " Let dein manage dein, required
@@ -31,55 +34,78 @@ if !has('nvim')
   call dein#add('roxma/vim-hug-neovim-rpc')
 endif
 
+" Quality of Life plugins
+"""""""""""""""""""""""""
 " CoC.nvim: The Conqueror of Completion
 call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
+" Speed up Vim by updating folds only when called-for.
+call dein#add('Konfekt/FastFold')
+" vim-snipmate default snippets (Previously snipmate-snippets)
+call dein#add('honza/vim-snippets')
+" EditorConfig plugin for Vim
+call dein#add('editorconfig/editorconfig-vim')
+" fzf <3 vim
+call dein#add('junegunn/fzf.vim')
+" Swap your windows without ruining your layout
+call dein#add('wesQ3/vim-windowswap')  " <leader>ww to mark/swap windows
+" Identify and Irradicate unwanted whitespace at the end of the line
+call dein#add('csexton/trailertrash.vim')  " <F5> to remove trailing whitespace
 
+" Visual plugins
+""""""""""""""""
+" Preview colours in source code while editing
+call dein#add('ap/vim-css-color')
+" ARMv4 through 7 syntax highlighting for vim
+call dein#add('ARM9/arm-syntax-vim')
+
+" Document formatting plugins
+"""""""""""""""""""""""""""""
+" VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.
+call dein#add('lervag/vimtex')
+" pandoc integration and utilities for vim
+call dein#add('vim-pandoc/vim-pandoc')
+" pandoc markdown syntax, to be installed alongside vim-pandoc
+call dein#add('vim-pandoc/vim-pandoc-syntax')
+" Vim plugin to work with R
+call dein#add('jalvesaq/Nvim-R', { 'branch': 'stable' })
+" A Narrow Region Plugin for vim (like Emacs Narrow Region)
+call dein#add('chrisbra/NrrwRgn')
+
+" Tim Pope plugins
+""""""""""""""""""
+" fugitive.vim: A Git wrapper so awesome, it should be illegal
+call dein#add('tpope/vim-fugitive')
+" surround.vim: Delete/change/add parentheses/quotes/XML-tags/much more with
+" ease
+call dein#add('tpope/vim-surround')
+" repeat.vim: enable repeating supported plugin maps with "."
+call dein#add('tpope/vim-repeat')
+" dispatch.vim: Asynchronous build and test dispatcher
+" TODO: use this more - set makeprg for filetypes without plugins
+call dein#add('tpope/vim-dispatch')
+
+" Airblade plugins
+""""""""""""""""""
+" Changes Vim working directory to project root.
+call dein#add('airblade/vim-rooter')
+" A Vim plugin which shows git diff markers in the sign column and
+" stages/previews/undoes hunks and partial hunks.
+call dein#add('airblade/vim-gitgutter')
+" Ensure Vim's help docs always open in their own, single tab.
+call dein#add('airblade/vim-helptab')
+
+" End of dein plugin list
 call dein#end()
 
-call vundle#begin()
+
+
+"call vundle#begin()
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ap/vim-css-color'
+"Plugin 'VundleVim/Vundle.vim'
 
-" Vimux: a plugin that allows vim to run commands in Tmux splits
-"Plugin 'benmills/vimux'
+"Plugin 'StanAngeloff/php.vim'
+"call vundle#end()
 
-" Editor config
-Plugin 'editorconfig/editorconfig-vim'
-
-" TPope plugins
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-" TODO: use this more - set makeprg for filetypes without plugins
-Plugin 'tpope/vim-dispatch'
-
-Plugin 'wesQ3/vim-windowswap'  " <leader>ww to mark/swap windows
-Plugin 'StanAngeloff/php.vim'
-Plugin 'csexton/trailertrash.vim'
-
-Plugin 'ARM9/arm-syntax-vim'
-
-Plugin 'junegunn/fzf.vim'
-
-Plugin 'airblade/vim-rooter'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'airblade/vim-helptab'
-
-" Document formatting packages
-Plugin 'lervag/vimtex'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'jalvesaq/Nvim-R', {'branch': 'stable'}
-Plugin 'chrisbra/NrrwRgn'
-
-" SnipMate - used to implement snippets
-" No longer used - use coc-snippets instead
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-call vundle#end()
 
 
 "let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -88,14 +114,8 @@ call vundle#end()
 nnoremap <C-_> :BLines<CR>
 
 
-" SnipMate configuration
-"let g:snipMate = { 'snippet_version' : 1 }
-"imap <C-S> <Plug>snipMateNextOrTrigger
-"smap <C-S> <Plug>snipMateNextOrTrigger
-"imap <F5> <Plug>snipMateShow
 " coc-snippets configuration
 vmap <C-S> <Plug>(coc-snippets-select)
-"
 let g:snips_author="Sam Whitehead"
 let g:snips_email="sam.everythingcomputers@gmail.com"
 let g:snips_github="https://github.com/Ytrewq13"
@@ -110,6 +130,7 @@ nmap <F5> :TrailerTrim<CR>
 filetype plugin indent on
 syntax on
 
+" Leader key '\'
 let mapleader="\\"
 let maplocalleader="\\"
 
@@ -231,7 +252,7 @@ autocmd FileType rmd inoremap <buffer> <F2> <Esc><F2>
 set nofoldenable
 
 let g:tex_flavor = "latex"
-"let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_enabled = 1
 
 " Compile latex documents asynchronously with Vimtex
 autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompile<CR>
@@ -239,11 +260,11 @@ autocmd FileType tex nnoremap <buffer> <F3> :w<CR>:VimtexClean<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
 
-augroup VimCompletesMeTex
-    autocmd!
-    autocmd FileType tex
-        \ let b:vcm_omni_pattern = g:vimtex#re#neocomplete
-augroup END
+"augroup VimCompletesMeTex
+"    autocmd!
+"    autocmd FileType tex
+"        \ let b:vcm_omni_pattern = g:vimtex#re#neocomplete
+"augroup END
 
 augroup vimtex_config
   autocmd!
@@ -268,6 +289,9 @@ let g:vimtex_view_method = 'zathura'
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" CoC extensions
+let g:coc_global_extensions = ['coc-vimlsp', 'coc-snippets', 'coc-vimtex', 'coc-json', 'coc-clangd']
 
 " TODO: setup more CoC details/settings
 
@@ -295,27 +319,6 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-
-" ALE: Asynchronous Linting Engine
-""""""""""""""""""""""""""""""""""
-let g:ale_enabled = 0
-let g:ale_c_parse_makefile = 1
-let g:ale_pattern_options = {
-\   '.*\.tex$': {'ale_enabled': 0},
-\   '.*\.Rmd$': {'ale_enabled': 0},
-\   '.*\.R$'  : {'ale_enabled': 0},
-\}
-let g:ale_linters = {
-\   'c': ['gcc', 'clangtidy'],
-\   'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc'],
-\}
-"let g:ale_asm_gcc_executable = 'aarch64-none-elf-gcc'
-"let g:ale_c_cc_executable = 'aarch64-none-elf-gcc'
-
-" FIXME: Comment this out when writing any production code
-" Remove warnings about possible buffer overruns (e.g. puts, scanf, sprintf,
-" etc.)
-let g:ale_c_clangtidy_checks = ['-clang-analyzer-security.insecureAPI.*']
 
 autocmd BufEnter *.asm silent! setlocal ft=nasm
 autocmd BufNewFile,BufRead *.s,*.S silent! setlocal filetype=arm " arm = armv6/7
