@@ -113,13 +113,6 @@ call dein#end()
 nnoremap <C-_> :BLines<CR>
 
 
-" coc-snippets configuration
-vmap <C-S> <Plug>(coc-snippets-select)
-let g:snips_author="Sam Whitehead"
-let g:snips_email="sam.everythingcomputers@gmail.com"
-let g:snips_github="https://github.com/Ytrewq13"
-
-
 let g:rooter_silent_chdir = 1
 let g:rooter_patterns = ['.git', 'src/', 'build/']
 
@@ -302,6 +295,13 @@ let g:coc_global_extensions = [
 
 " SNIPPETS
 """"""""""
+" coc-snippets configuration
+"vmap <C-S> <Plug>(coc-snippets-select)
+" TODO: after expanding a snippet do :unlet coc_selected_text
+let g:snips_author="Sam Whitehead"
+let g:snips_email="sam.everythingcomputers@gmail.com"
+let g:snips_github="https://github.com/Ytrewq13"
+
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
 
