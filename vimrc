@@ -52,6 +52,8 @@ call dein#add('csexton/trailertrash.vim')  " <F5> to remove trailing whitespace
 
 " Visual plugins
 """"""""""""""""
+" Colour schemes
+call dein#add('flazz/vim-colorschemes')
 " Preview colours in source code while editing
 call dein#add('ap/vim-css-color')
 " ARMv4 through 7 syntax highlighting for vim
@@ -265,10 +267,12 @@ augroup END
 
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
+    \   '-xelatex',
     \   '-verbose',
     \   '-file-line-error',
     \   '-interaction=nonstopmode',
     \   '-shell-escape',
+    \   '-synctex=1',
     \ ],
     \ 'build_dir' : 'build'
     \}
@@ -301,6 +305,8 @@ let g:coc_global_extensions = [
 let g:snips_author="Sam Whitehead"
 let g:snips_email="sam.everythingcomputers@gmail.com"
 let g:snips_github="https://github.com/Ytrewq13"
+
+nnoremap <C-S> :unlet coc_selected_text<CR>
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -360,6 +366,9 @@ nnoremap <Down> <nop>
 " Ron
 colorscheme ron
 nnoremap <F12> :colorscheme ron<CR>
+" Colourscheme 3dglasses
+"colorscheme 3dglasses
+"nnoremap <F12> :colorscheme 3dglasses<CR>
 highlight CocFloating ctermbg=darkgrey ctermfg=lightgrey
 highlight CocErrorSign ctermfg=red
 
