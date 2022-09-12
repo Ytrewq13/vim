@@ -329,7 +329,7 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 " Use <CR> to accept and expand a snippet suggestion
 "inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 "                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 
 autocmd BufEnter *.asm silent! setlocal ft=nasm
