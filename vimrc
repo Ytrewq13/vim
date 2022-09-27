@@ -285,6 +285,7 @@ let g:vimtex_view_method = 'zathura'
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <localleader>f <Plug>(coc-fix-current)
 
 " CoC extensions
 let g:coc_global_extensions = [
