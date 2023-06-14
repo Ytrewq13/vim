@@ -111,8 +111,6 @@ call dein#end()
 
 "let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-" Fuzzy search the current file with <C-/> (vim registers this as <C-_>)
-nnoremap <C-_> :BLines<CR>
 
 
 let g:rooter_silent_chdir = 1
@@ -124,9 +122,9 @@ nmap <F5> :TrailerTrim<CR>
 filetype plugin indent on
 syntax on
 
-" Leader key '\'
-let mapleader="\\"
-let maplocalleader="\\"
+" Leader key SPACE
+let mapleader=" "
+let maplocalleader=" "
 
 set path+=**
 set wildmenu
@@ -169,9 +167,20 @@ nnoremap <C-H> <C-W><C-H>
 
 nnoremap <C-N> :tabn<CR>
 nnoremap <C-P> :tabp<CR>
-nnoremap <C-T> :tabnew<CR>
-nnoremap <leader>t :terminal ++curwin<CR>
-nnoremap <leader>vt :vert terminal<CR>
+
+" Terminal mappings
+"
+" <leader>th (Terminal Here) - replace current window with a terminal
+nnoremap <leader>th :terminal ++curwin<CR>
+" <leader>tv (Terminal Vertical)
+nnoremap <leader>tv :vert terminal<CR>
+" <leader>ts (Terminal Split)
+nnoremap <leader>ts :terminal<CR>
+" <leader>tt (Terminal Tab) - open a new tab with a terminal window
+nnoremap <leader>tt :tab terminal<CR>
+
+" Quickly escape from a terminal using double <Esc>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 
 vmap <expr> <LEFT>  DVB_Drag('left')
@@ -202,18 +211,29 @@ set list
 execute pathogen#infect()
 call pathogen#helptags()
 
-" Recursively search for files by their name
-nnoremap <C-f> :Files<CR>
-" RipGrep - grep through files in the current directory
-nnoremap <C-g> :Rg<CR>
-" Search through tags for the project
-" FIXME: find an unused keybind that makes sense for searching tags (e.g.
-" Variables, KeyWords, Tokens, etc.) - or maybe just assign it to
-" <leader>t/s/g/...
-"nnoremap <C-S-g> :Tags<CR>
+" Searching
+"
+" <leader>/ - Fuzzy search the current file
+nnoremap <leader>/ :BLines<CR>
+" <leader>sf (Search Files) - Recursively search for files by their name
+nnoremap <leader>sf :Files<CR>
+" <leader>sc (Search Contents) - Use RipGrep to recursively find files by
+" searching their contents
+nnoremap <leader>sc :Rg<CR>
+" <leader>st (Search Tags) - Search through tags for the project
+nnoremap <leader>st :Tags<CR>
+" <leader>mt (Make Tags) - generate tags for the project
+nnoremap <leader>mt :Start ctags -R .<CR>
 
-" Toggle spellcheck
-nnoremap <silent> <Leader>s :setlocal spell!<CR>
+" <leader>sp (SPelling) - Toggle spellcheck
+nnoremap <silent> <Leader>sp :setlocal spell!<CR>
+
+" Compilation commands
+"
+" <leader>mk (MaKe) - run the default make target
+nnoremap <leader>mk :Make<CR>
+" <leader>mc (Make Clean) - run the make target 'clean'
+nnoremap <leader>mc :Make clean<CR>
 
 set showcmd
 
